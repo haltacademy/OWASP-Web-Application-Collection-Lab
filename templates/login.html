@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - OWASP Web Application Lab</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .login-box {
+            width: 100%;
+            max-width: 400px;
+            padding: 2.5rem;
+            text-align: center;
+        }
+        .login-box h2 {
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            background: rgba(0, 0, 0, 0.2);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-color);
+        }
+        .btn-login {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        .error-message {
+            color: #f87171;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+        .login-logo {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="glass-panel login-box">
+            <div class="login-logo">
+                <img src="/static/logo.png" alt="OWASP Logo" width="200" style="object-fit: contain; filter: drop-shadow(0 0 10px rgba(0,210,255,0.3));">
+            </div>
+            <h2>Authentication Required</h2>
+            
+            {% if error %}
+            <div class="error-message">
+                {{ error }}
+            </div>
+            {% endif %}
+            
+            <form method="POST" action="/login">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required autofocus autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-login">Login to Cyber Range</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

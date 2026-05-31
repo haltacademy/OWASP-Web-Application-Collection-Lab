@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OWASP Web Application Lab</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="glass-header">
+            <div class="logo">
+                <img src="/static/logo.png" alt="OWASP Logo" width="120" style="object-fit: contain;">
+                <h1>OWASP Web App Lab</h1>
+            </div>
+            <nav>
+                <a href="#" class="active">Dashboard</a>
+                <a href="/logout" class="btn-danger" style="padding: 0.4rem 1rem; border-radius: 6px;">Logout</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero-section">
+                <h2>Welcome to your Cyber Range</h2>
+                <p>Deploy, test, and master web application security with the world's most vulnerable applications.</p>
+            </section>
+
+            <section class="labs-section">
+                <div class="section-header">
+                    <h3>Available Labs</h3>
+                    <button class="btn btn-secondary" onclick="fetchLabs()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path></svg>
+                        Refresh
+                    </button>
+                </div>
+                
+                <div id="labs-container" class="labs-grid">
+                    <!-- Labs will be injected here via JS -->
+                    <div class="loading-spinner"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <!-- Template for Lab Card -->
+    <template id="lab-card-template">
+        <div class="lab-card glass-panel">
+            <div class="card-header">
+                <h4 class="lab-name">Lab Name</h4>
+                <div class="status-badge status-stopped">Stopped</div>
+            </div>
+            <div class="card-body">
+                <p class="lab-desc">Lab Description</p>
+                <div class="lab-meta">
+                    <span class="lab-port">Port: <span>-</span></span>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a href="#" target="_blank" class="btn btn-primary btn-open" style="display:none;">Open Lab</a>
+                <button class="btn btn-success btn-start">Start</button>
+                <button class="btn btn-danger btn-stop" style="display:none;">Stop</button>
+            </div>
+        </div>
+    </template>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

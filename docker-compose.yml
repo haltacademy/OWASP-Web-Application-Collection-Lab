@@ -1,0 +1,61 @@
+version: "3.8"
+
+services:
+  juiceshop:
+    image: bkimminich/juice-shop
+    container_name: owasp_juiceshop
+    ports:
+      - "9000:3000"
+    restart: unless-stopped
+    labels:
+      - "lab.name=OWASP Juice Shop"
+      - "lab.description=The most modern and sophisticated insecure web application."
+      - "lab.port=9000"
+
+  webgoat:
+    image: webgoat/webgoat:latest
+    container_name: owasp_webgoat
+    ports:
+      - "9001:8080"
+      - "9090:9090"
+    environment:
+      - WEBWOLF_HOST=127.0.0.1
+      - WEBWOLF_PORT=9090
+    restart: unless-stopped
+    labels:
+      - "lab.name=OWASP WebGoat"
+      - "lab.description=A deliberately insecure Java EE web application."
+      - "lab.port=9001"
+
+  mutillidae:
+    image: citizenstig/nowasp:latest
+    container_name: owasp_mutillidae
+    ports:
+      - "9002:80"
+    restart: unless-stopped
+    labels:
+      - "lab.name=OWASP Mutillidae II"
+      - "lab.description=A free, open-source web application deliberately designed to be vulnerable."
+      - "lab.port=9002"
+
+  vulnerableapp:
+    image: sasanlabs/owasp-vulnerableapp:latest
+    container_name: owasp_vulnerableapp
+    ports:
+      - "9003:9090"
+    restart: unless-stopped
+    labels:
+      - "lab.name=OWASP VulnerableApp"
+      - "lab.description=A modular, deliberately vulnerable web app for benchmarking security tools."
+      - "lab.port=9003"
+
+  dvwa:
+    image: vulnerables/web-dvwa
+    container_name: dvwa
+    ports:
+      - "9004:80"
+    restart: unless-stopped
+    labels:
+      - "lab.name=Damn Vulnerable Web App (DVWA)"
+      - "lab.description=A PHP/MySQL web application that is damn vulnerable."
+      - "lab.port=9004"
